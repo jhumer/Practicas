@@ -1,0 +1,35 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+	/*
+	 * 	Jhumer Siñani (OVEJA)
+	 */
+public class Expresiones_Regulares {
+	// ejemplo basico de uso de expresiones regulares
+	public static void main(String[] args) {
+
+		String texto = "Jhumer-Sinani-77883774";
+		// verificar si texto esta en el formato NOMBRE-APELLIDO-NUMERO
+		if (texto.matches("([a-zA-Z]+)-([a-zA-Z]+)-([0-9]+)")) {
+			System.out.println("cumple el formato establecido");
+		} else {
+			System.out.println("no cumple el formato establecido");
+		}
+
+		// sacar los datos nombre,apellido y nro celular de texto
+		Pattern expresion = Pattern.compile("([\\w]+)-([\\w]+)-([\\d]+)"); // funciona de formasimilar
+																			// ([a-zA-Z]+)-([a-zA-Z]+)-([0-9]+)
+		Matcher match = expresion.matcher(texto);
+		String nombre = "";
+		String apellido = "";
+		int numero = 0;
+		while (match.find()) {
+			nombre = match.group();
+			apellido = match.group(2);
+			numero = Integer.parseInt(match.group(3));
+		}
+		System.out.println("el nombre es : " + nombre);
+		System.out.println("el apellido es : " + apellido);
+		System.out.println("el numero es : " + numero);
+
+	}
+}
